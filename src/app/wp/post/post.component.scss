@@ -1,0 +1,218 @@
+@import "../../../theme/helpers/mixins";
+@import "../../../theme/colors";
+
+@mixin post-title {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+}
+
+@mixin post-excerpt {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+.posts {
+  @include default-container-layout;
+  margin: 60px auto;
+  min-height: 80vh;
+
+  .posts-container {
+
+    .posts-container-inner {
+      display: flex;
+      flex-wrap: wrap;
+
+      .post {
+        display: flex;
+        background-color: #ffffff15;
+        margin-bottom: 10px;
+        flex-basis: calc(50% - 10px);
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 4px;
+        overflow: hidden;
+        @include tile-hover-effect;
+
+        @include breakpoint("small", "max") {
+          position: relative;
+
+          .post-img-container {
+            flex-basis: 0 !important;
+            margin: 0 !important;
+
+            img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0.5;
+              z-index: -1;
+            }
+
+            &.fill {
+              img {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+
+            &.icon {
+              img {
+                width: 90% !important;
+                transform: translate(-50%, -50%);
+                left: 50%;
+                height: auto !important;
+                top: 50%;
+                max-height: 90%;
+                object-fit: contain !important;
+              }
+            }
+
+          }
+
+          .post-content {
+            flex-basis: 100% !important;
+            background-color: rgba(0,0,0,0.35);
+
+            .post-title {
+              @include post-title;
+            }
+
+            .post-excerpt {
+              @include post-excerpt;
+            }
+          }
+
+        }
+
+        &:first-child {
+          flex-basis: 100%;
+
+          // @include breakpoint("medium") {
+          //   flex-basis: calc(50% - 10px);
+          // }
+
+          // @include breakpoint("small") {
+          //   flex-basis: 100%;
+          // }
+
+          .post-img-container {
+            flex-basis: 35%;
+          }
+
+          .post-content {
+            padding: 15px;
+            flex-basis: 65%;
+
+
+            .post-header {
+
+              .post-title {
+              }
+            }
+
+            .post-description {
+              .post-excerpt {
+
+              }
+              .post-date {
+
+              }
+            }
+          }
+        }
+
+        &:not(:first-child) {
+
+          @include breakpoint(small, max) {
+            flex-basis: 100%;
+          }
+
+          .post-content {
+
+            .post-header {
+              .post-title {
+                @include post-title;
+              }
+            }
+
+            .post-description {
+              .post-excerpt {
+                @include post-excerpt;
+              }
+
+              .post-date {
+
+              }
+            }
+          }
+        }
+
+        .post-img-container {
+          flex-basis: 45%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0;
+
+          figure {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            img {
+              vertical-align: top;
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+
+          &.icon {
+            margin: 10px;
+            figure {
+              width: auto;
+              height: auto;
+              img {
+                object-fit: initial;
+              }
+            }
+          }
+        }
+
+        .post-content {
+          flex-basis: 55%;
+          padding: 10px;
+          position: relative;
+
+          .post-header {
+            .post-title {
+              color: #fff;
+              @include line-clamp(3);
+              min-height: 85px;
+            }
+          }
+
+          .post-description {
+            padding-bottom: 25px;
+
+            .post-excerpt {
+              @include line-clamp(4);
+
+              ::ng-deep {
+                p {
+                  margin-bottom: 0;
+                }
+              }
+            }
+
+            .post-date {
+              position: absolute;
+              bottom: 10px;
+              right: 10px;
+              color: #ffffff55;
+            }
+          }
+        }
+      }
+    }
+  }
+}

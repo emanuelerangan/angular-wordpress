@@ -1,0 +1,29 @@
+<hal-spinner></hal-spinner>
+
+<div class="posts">
+  <span style="color: red">{{errorMessage}}</span>
+  <div class="posts-container">
+    <h1
+        class="mat-display-4 text-center"
+        [innerHTML]="'news.label' | translate"
+    ></h1>
+    <div class="posts-container-inner">
+      <article [routerLink]="['/news', post.slug]" class="post" *ngFor="let post of (allPosts$ | async)">
+        <div class="post-img-container" [ngClass]="post.featured_image_type">
+          <figure>
+            <img [src]="post.featured_image_url_medium">
+          </figure>
+        </div>
+        <div class="post-content">
+          <header class="post-header">
+            <h1 class="post-title" [innerHTML]="post.title.rendered"></h1>
+          </header>
+          <div class="post-description">
+            <p class="post-excerpt" [innerHTML]="post.excerpt.rendered | slice:0:400"></p>
+            <span class="post-date mat-small">{{ post.date | date: 'short' }}</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

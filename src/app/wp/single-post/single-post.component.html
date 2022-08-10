@@ -1,0 +1,32 @@
+<span style="color: red">{{errorMessage}}</span>
+
+<div class="post-single" *ngIf="singlePost">
+  <div class="post-single__header">
+    <div class="post-single__header-content">
+      <div class="post-single__section-title text-center" [innerHTML]="'news.label' | translate"></div>
+      <!-- <h1
+        class="text-left mat-headline"
+        [innerHTML]="'news.1.title' | translate">
+      </h1> -->
+      <h1
+        class="text-left mat-headline"
+        [innerHTML]="singlePost.title.rendered">
+      </h1>
+      <!-- <div
+        class="post-single__date mat-small"
+        [innerHTML]="'news.1.date' | translate">
+      </div> -->
+      <div class="post-single__date mat-small">
+        {{singlePost.date | date: 'longDate'}}
+        <!-- {{ singlePost.date | date: 'shortDate': '' }} -->
+      </div>
+    </div>
+  </div>
+
+  <div class="post-single__body">
+    <!-- <div [innerHTML]="'news.1.body' | translate"></div> -->
+    <div [innerHTML]="singlePost.content.rendered"></div>
+  </div>
+
+</div>
+
